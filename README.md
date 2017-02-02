@@ -73,7 +73,7 @@ tiscon2
 
     ├ java
 
-    │└ db.migration       #DBスキーマ、事前登録データの定義情報
+    │├ db.migration       #DBスキーマ、事前登録データの定義情報
 
     │└ net.unit8.sigcolle
 
@@ -95,7 +95,7 @@ tiscon2
 
       ├ META-INF                   #アプリケーションが公開する静的リソース
 
-　　　│└ net.unit8.sigcolle.dao   #Daoに対応するSQLファイル
+      ├ net.unit8.sigcolle.dao   #Daoに対応するSQLファイル
 
       ├ public                     #アプリケーションが公開する静的リソース
 
