@@ -108,7 +108,7 @@ tiscon2
 ## 使用技術
 ### Enkan
 本アプリケーションはマイクロフレームワーク『Enkan』を使用して構築されています。  
-Enaknについて学びたい方は、以下を参考にしてください。
+Enkanについて学びたい方は、以下を参考にしてください。
 - [Getting Started(スタートガイド)](https://enkan.github.io/getting-started.html)
 - [マイクロフレームワークEnkan(とKotowari)ではじめるREPL駆動開発](http://www.slideshare.net/kawasima/enkankotowarirepl)
 
