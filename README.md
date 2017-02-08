@@ -59,7 +59,7 @@ GithubのWatch機能を使用すれば、プログラムの修正があった場
 
 
 ## 更新の取り込み方
-更新の通知を受け取ったら、https://github.com/tiscon/tiscon2 からForkしてきた自身のリポジトリへ更新内容を取り込みます。  
+更新の通知を受け取ったら、https://github.com/tiscon/tiscon2 からForkしてきた自身の環境へ更新内容を取り込みます。  
 
 更新の取り込み方は[更新手引き](doc/UpdateGuide.md)を参照してください。
 
