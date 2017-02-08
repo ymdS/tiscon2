@@ -22,7 +22,7 @@ nameに `tiscon` 、 URLに `https://github.com/tiscon/tiscon2.git` と入力し
 
 tisconのmasterブランチをローカルのmasterブランチにダウンロードします。
 
-[]()と同様の手順で
+[リモートリポジトリの内容をダウンロード(Pull)する | Gitルーキートラの巻 :tiger:](GitForRookies.md#リモートリポジトリの内容をダウンロードpullする)と同様の手順で
 
 ## 自分のリポジトリに変更をアップロードする
 

@@ -23,9 +23,9 @@
 
 特によく使う機能については、以下にまとめておきます。
 
-### 変更内容をコミット(Commit)する
+### 変更内容をコミット([Commit](https://www.atlassian.com/ja/git/tutorial/git-basics#!commit))する
 
-現在の作業状態を将来見直せる形でセーブしたい時に使います。つまり、コーヒーを買いに行く時には使いませんが仕事を終えて帰宅する前やタスクが終わった時には使います。
+[Commit](https://www.atlassian.com/ja/git/tutorial/git-basics#!commit) は、現在の作業状態を将来見直せる形でセーブしたい時に使います。つまりコーヒーを買いに行く時には使いませんが、帰宅する前やタスクが終わった時には使います。
 
 #### 新規に追加したファイルは Changelist に追加する
 
@@ -61,6 +61,8 @@ IntelliJでファイルを新規作成すると、作成時に
 
 ### リモートリポジトリの内容をダウンロード([Pull](https://www.atlassian.com/ja/git/tutorial/remote-repositories#!pull))する
 
+[Pull](https://www.atlassian.com/ja/git/tutorial/remote-repositories#!pull) は、他のチームメンバーが書いてくれたコードを自分のPCにダウンロードする時に使います。
+
 IntelliJで `VCS` > `Git` > `Pull` をクリック。
 
 ![IntelliJでPull](image/git_for_rookie_pull_1.png)
@@ -69,7 +71,7 @@ IntelliJで `VCS` > `Git` > `Pull` をクリック。
 
 ![Pull画面](image/git_for_rookie_pull_2.png)
 
-`Pull` をクリック。
+自分が更新をダウンロードしたいリモートリポジトリを選択して `Pull` をクリック。([更新手引き](UpdateGuide.md)のリンクから来た方は、ここで `tiscon` を選択する必要があるはずです)
 
 もし「File Merged with Conflicts」という以下のようなメッセージが表示されたら、本家リポジトリの変更内容とローカルの変更内容が競合しています。
 
@@ -78,3 +80,19 @@ IntelliJで `VCS` > `Git` > `Pull` をクリック。
 `Merge` ボタンをクリックして変更内容を確認し、残しておきたい方の変更を取り込んでください。
 
 ### ローカルリポジトリの内容をアップロード([Push](https://www.atlassian.com/ja/git/tutorial/remote-repositories#!push))する
+
+[Push](https://www.atlassian.com/ja/git/tutorial/remote-repositories#!push) は、自分のPCの[Commit](https://www.atlassian.com/ja/git/tutorial/git-basics#!commit)内容を他のチームメンバーに共有したい時に使います。
+
+`VCS` > `Git` > `Push` をクリックして[Push](https://www.atlassian.com/ja/git/tutorial/remote-repositories#!push)画面を開きます。
+
+![Push画面を開く](image/git_for_rookie_push_1.png)
+
+自分がした[Commit](https://www.atlassian.com/ja/git/tutorial/git-basics#!commit)が表示されるので、思ったとおりの内容なら `Push` をクリック。
+
+![Push画面](image/git_for_rookie_push_2.png)
+
+これで [Push](https://www.atlassian.com/ja/git/tutorial/remote-repositories#!push) は完了です。
+
+ちなみに、[Commit](https://www.atlassian.com/ja/git/tutorial/git-basics#!commit)内容を即[Push](https://www.atlassian.com/ja/git/tutorial/remote-repositories#!push)してしまいたければ、[Commit](https://www.atlassian.com/ja/git/tutorial/git-basics#!commit)時に `Commit and Push` を選択すればできます。
+
+![Commit and Push](image/git_for_rookie_push_3.png)
