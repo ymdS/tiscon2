@@ -35,7 +35,7 @@ IntelliJでファイルを新規作成すると、作成時に
 
 と尋ねられるので、「Yes」と答えておいてください。これでファイルが [add](https://www.atlassian.com/ja/git/tutorial/git-basics#!add) されます。
 
-もしIntelliJ以外からファイルを追加した時(画像ファイルをディレクトリ移動させてきた時など)は、 `Version Control` タブで add したいファイルをクリックしてから `Move to Another Changelist` ボタンをクリックして、
+もしIntelliJ以外からファイルを追加した時(画像ファイルをディレクトリ移動させてきた時など)は、 `Version Control` タブで [add](https://www.atlassian.com/ja/git/tutorial/git-basics#!add) したいファイルをクリックしてから `Move to Another Changelist` ボタンをクリックして、
 
 ![Move to Another Changelist](image/git_for_rookie_add_file_2.png) 
 
@@ -45,9 +45,9 @@ IntelliJでファイルを新規作成すると、作成時に
 
 ちなみに Changelist は IntelliJ 特有の仕組みです。
 
-#### コミットする
+#### [Commit](https://www.atlassian.com/ja/git/tutorial/git-basics#!commit) する
 
-コミットしたくなったら、 `Version Control` タブの `Default` 内のリストを見てみてください。変更したいものがすべてこの内部に入っていれば準備OKです。
+[Commit](https://www.atlassian.com/ja/git/tutorial/git-basics#!commit) したくなったら、 `Version Control` タブの `Default` 内のリストを見てみてください。変更したいものがすべてこの内部に入っていれば準備OKです。
 
 そして `Version Control` タブの `Commit Changes` ボタンをクリックして、
 
@@ -59,8 +59,22 @@ IntelliJでファイルを新規作成すると、作成時に
 
 コミットの内容が分かるようなメッセージを **必ず** 書いて、 `Commit` ボタンをクリックすればコミット完了です。
 
-### リモートリポジトリの内容をダウンロード(Pull)する
+### リモートリポジトリの内容をダウンロード([Pull](https://www.atlassian.com/ja/git/tutorial/remote-repositories#!pull))する
 
+IntelliJで `VCS` > `Git` > `Pull` をクリック。
 
+![IntelliJでPull](image/git_for_rookie_pull_1.png)
 
-### ローカルリポジトリの内容をアップロード(Push)する
+[Pull](https://www.atlassian.com/ja/git/tutorial/remote-repositories#!pull) のオプションを選ぶ画面が表示されるので、
+
+![Pull画面](image/git_for_rookie_pull_2.png)
+
+`Pull` をクリック。
+
+もし「File Merged with Conflicts」という以下のようなメッセージが表示されたら、本家リポジトリの変更内容とローカルの変更内容が競合しています。
+
+![競合発生](image/git_for_rookie_pull_3.png)
+
+`Merge` ボタンをクリックして変更内容を確認し、残しておきたい方の変更を取り込んでください。
+
+### ローカルリポジトリの内容をアップロード([Push](https://www.atlassian.com/ja/git/tutorial/remote-repositories#!push))する
