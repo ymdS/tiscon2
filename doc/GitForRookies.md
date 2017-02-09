@@ -23,6 +23,16 @@
 
 特によく使う機能については、以下にまとめておきます。
 
+### Git操作用のタブを開く
+
+IntelliJで `Shift` キーを2回連続で押します。すると検索窓が表示されるので、 `version` と入力します。
+
+![search everywhere](image/git_for_rookie_open_version_control_1.png)
+
+すると `Version Control` が検索にヒットするのでそれを選択します。すると `Version Control` タブが開きます。今後Gitの操作では頻繁にこのタブを使います。
+
+![version control tab](image/git_for_rookie_open_version_control_2.png)
+
 ### 変更内容をコミット([Commit](https://www.atlassian.com/ja/git/tutorial/git-basics#!commit))する
 
 [Commit](https://www.atlassian.com/ja/git/tutorial/git-basics#!commit) は、現在の作業状態を将来見直せる形でセーブしたい時に使います。つまりコーヒーを買いに行く時には使いませんが、帰宅する前やタスクが終わった時には使います。
