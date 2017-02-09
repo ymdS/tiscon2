@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 
 import enkan.component.doma2.DomaProvider;
 import lombok.Data;
+import net.unit8.sigcolle.validator.Password;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 
@@ -37,7 +38,9 @@ public class RegisterForm extends FormBase {
     @Email
     private String email;
 
+    @NotNull
     @Length(min = 4, max = 20)
+    @Password
     private String pass;
 
     @Override
@@ -54,5 +57,4 @@ public class RegisterForm extends FormBase {
     public List<String> getErrors(String name) {
         return super.getErrors(name);
     }
-
 }

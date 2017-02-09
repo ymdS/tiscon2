@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import net.unit8.sigcolle.validator.Password;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 
@@ -21,6 +22,7 @@ public class LoginForm extends FormBase {
 
     @NotNull
     @Length(min = 4, max = 20)
+    @Password
     private String pass;
 
     @Override
