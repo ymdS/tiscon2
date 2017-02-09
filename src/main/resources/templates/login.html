@@ -30,14 +30,21 @@
                     <div class="center column">
                         <h1 class="ui center aligned header">ログイン</h1>
                         <div class="ui segment">
-                            <form class="ui form" method="post" action="/login"
-                                th:action="@{~/login}" th:classappend="${login.hasErrors()} ? 'error'">
-                                <div class="ui error message" th:if="${login.hasErrors()}" th:text="${login.getErrors('error').get(0)}"></div>
-                                <div class="field" th:classappend="${login.hasErrors()} ? 'error'">
-                                    <input type="email" name="email" placeholder="メールアドレス" th:value="(${login.email}!=null)?${login.email}"/>
+                            <form class="ui form" method="post" action="/login" th:action="@{~/login}"
+                                  th:classappend="${login.hasErrors()} ? 'error'">
+                                <div class="ui error message" th:if="${login.hasErrors('error')}" th:text="${login.getErrors('error').get(0)}"></div>
+                                <div class="field" th:classappend="${login.hasErrors('email') || login.hasErrors('error')} ? 'error'">
+                                    <input type="email" name="email" placeholder="メールアドレス"
+                                           th:value="${login.email != null} ? ${login.email}" />
+                                    <ul class="ui pointing red basic label" th:if="${login.hasErrors('email')}">
+                                        <li th:each="message : ${login.getErrors('email')}" th:text="${message}"></li>
+                                    </ul>
                                 </div>
-                                <div class="field" th:classappend="${login.hasErrors()} ? 'error'">
+                                <div class="field" th:classappend="${login.hasErrors('pass') || login.hasErrors('error')} ? 'error'">
                                     <input type="password" name="pass" placeholder="パスワード"/>
+                                    <ul class="ui pointing red basic label" th:if="${login.hasErrors('pass')}">
+                                        <li th:each="message : ${login.getErrors('pass')}" th:text="${message}"></li>
+                                    </ul>
                                 </div>
                                 <button class="ui fluid red button">ログイン</button>
                             </form>

@@ -2,20 +2,24 @@ package net.unit8.sigcolle.form;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * @author takahashi
  */
 @Data
 public class LoginForm extends FormBase {
-    @NotBlank
+
+    @NotNull
+    @Length(min = 1, max = 50)
     @Email
     private String email;
 
+    @NotNull
     @Length(min = 4, max = 20)
     private String pass;
 
