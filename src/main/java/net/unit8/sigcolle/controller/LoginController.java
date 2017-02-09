@@ -49,7 +49,6 @@ public class LoginController {
 
         UserDao userDao = domaProvider.getDao(UserDao.class);
         User user;
-        Multimap errors = Multimap.empty();
 
         // メールアドレス存在チェック
         try {
