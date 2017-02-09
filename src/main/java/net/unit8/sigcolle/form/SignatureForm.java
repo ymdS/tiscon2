@@ -17,7 +17,7 @@ public class SignatureForm extends FormBase {
     private String campaignId;
 
     @NotBlank
-    @Length(max = 50)
+    @Length(min = 1, max = 50)
     private String name;
 
     @Length(max = 5000)

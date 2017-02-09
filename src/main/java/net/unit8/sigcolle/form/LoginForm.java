@@ -3,6 +3,7 @@ package net.unit8.sigcolle.form;
 import java.util.List;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -12,7 +13,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @Data
 public class LoginForm extends FormBase {
     @NotBlank
-    @Length(max = 50)
+    @Email
     private String email;
 
     @Length(min = 4, max = 20)
