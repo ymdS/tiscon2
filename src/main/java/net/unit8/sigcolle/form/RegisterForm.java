@@ -16,7 +16,7 @@ import org.hibernate.validator.constraints.Length;
  * @author takahashi
  */
 @Data
-public class UserForm extends FormBase {
+public class RegisterForm extends FormBase {
     @Inject
     private DomaProvider domaProvider;
 
