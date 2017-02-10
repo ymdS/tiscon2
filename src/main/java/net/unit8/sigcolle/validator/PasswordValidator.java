@@ -16,18 +16,15 @@ import javax.validation.ConstraintValidatorContext;
  * がすべて1つ以上入っていないといけない.
  */
 public class PasswordValidator implements ConstraintValidator<Password, String> {
+
+    private static final Pattern PATTERN = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$");
+
     @Override
     public void initialize(Password password) {
     }
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        if (s == null || s.isEmpty()) {
-            return true;
-        }
-
-        return Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$")
-                .matcher(s)
-                .matches();
+        return s == null || PATTERN.matcher(s).matches();
     }
 }
