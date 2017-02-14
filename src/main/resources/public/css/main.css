@@ -39,3 +39,7 @@ a.campaigns {
 ul.label {
   list-style-type: none;
 }
+
+.ui.dropdown:hover > .menu {
+  display: flex;
+}
