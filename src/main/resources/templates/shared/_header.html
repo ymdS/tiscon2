@@ -3,28 +3,32 @@
 
 <!-- header共通部品 -->
 <header class="ui fixed menu" th:fragment="header">
-    <div class="ui container">
+    <div class="ui container" th:with="isLogin=((${session} != null) and (${session.principal} != null))">
         <a href="/" class="header item logo">SIG COLLE</a>
 
-        <div class="right menu" th:if="(${session} == null) or (${session.principal} == null)">
-            <div class="ui dropdown link item">
+        <div class="right menu">
+            <div class="ui link item dropdown">
                 <span class="text">キャンペーン</span>
                 <i class="dropdown icon"></i>
                 <div class="menu">
                     <a class="item" href="#">新規作成</a>
-                    <a class="item" href="#">一覧</a>
-                    <div class="divider"></div>
-                    <a class="item" href="#">管理</a>
+                    <a class="item" href="#">作成キャンペーン一覧</a>
                 </div>
             </div>
-            <a href="/login" class="header item">ログイン</a>
-            <a href="/register" class="header item">ユーザ登録</a>
+
+            <a th:unless="${isLogin}" href="/register" class="header item">ユーザ登録</a>
+            <a th:unless="${isLogin}" href="/login" class="header item">ログイン</a>
+
+            <div th:if="${isLogin}" class="ui link item dropdown">
+                <span th:text="${session.principal.userName}">name</span> さん
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="#">ユーザ情報変更</a>
+                </div>
+            </div>
+            <a th:if="${isLogin}" href="/logout" class="header item">ログアウト</a>
         </div>
 
-        <div class="right menu" th:unless="((${session} == null) or (${session.principal} == null))">
-            <span class="header item"><span th:text="${session.principal.userName}">name</span>　さん</span>
-            <a href="/logout" class="header item">ログアウト</a>
-        </div>
     </div>
 </header>
 
