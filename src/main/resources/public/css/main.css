@@ -39,3 +39,8 @@ a.campaigns {
 ul.label {
   list-style-type: none;
 }
+
+
+.dropdown:hover > .menu {
+  display: flex;
+}
