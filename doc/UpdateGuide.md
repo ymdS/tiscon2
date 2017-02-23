@@ -52,7 +52,7 @@ tisconのmasterブランチをローカルのmasterブランチにダウンロ�
 
 ![add collaborators](image/set_collaborator_3.png)
 
-チームメンバーには、登録したメールアドレス宛にリポジトリへの招待メールが来ます。 `Approve` (承認)すると、今後代表のリポジトリにアクセスできます。
+チームメンバーには、登録したメールアドレス宛にリポジトリへの招待メールが来ます。 `Approve` (承認)すると、今後代表のリポジトリに作業内容をアップロードできるようになります。
 
 ### 代表のリポジトリをcloneし直す
 自分のPCでtiscon2を動かす([Windowsマシン](https://github.com/tiscon/tiscon2-startup-guide/blob/master/doc/operationCheckWin.md) / [Macマシン](https://github.com/tiscon/tiscon2-startup-guide/blob/master/doc/operationCheckMac.md))の手順に従って、代表のリポジトリを再度cloneしましょう。
