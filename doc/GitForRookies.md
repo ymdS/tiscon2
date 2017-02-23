@@ -47,7 +47,7 @@ IntelliJでファイルを新規作成すると、作成時に
 
 もしIntelliJ以外からファイルを追加した時(画像ファイルをディレクトリ移動させてきた時など)は、 `Version Control` タブで [add](https://www.atlassian.com/ja/git/tutorial/git-basics#!add) したいファイルをクリックしてから `Move to Another Changelist` ボタンをクリックして、
 
-![Move to Another Changelist](image/git_for_rookie_add_file_2.png) 
+![Move to Another Changelist](image/git_for_rookie_add_file_2.png)
 
 ファイルを `Default` に追加しましょう。
 
@@ -91,7 +91,7 @@ IntelliJで `VCS` > `Git` > `Pull` をクリック。
 
 ### ローカルリポジトリの内容をアップロード([Push](https://www.atlassian.com/ja/git/tutorial/remote-repositories#!push))する
 
-[Push](https://www.atlassian.com/ja/git/tutorial/remote-repositories#!push) は、自分のPCの[Commit](https://www.atlassian.com/ja/git/tutorial/git-basics#!commit)内容を他のチームメンバーに共有したい時に使います。
+[Push](https://www.atlassian.com/ja/git/tutorial/remote-repositories#!push) は、自分のPCの[Commit](https://www.atlassian.com/ja/git/tutorial/git-basics#!commit)内容を他のチームメンバーに共有したい時に使います。コミットされていない内容はアップロードできないので、まだ[Commit](https://www.atlassian.com/ja/git/tutorial/git-basics#!commit)していない人はまず[Commit](https://www.atlassian.com/ja/git/tutorial/git-basics#!commit)しましょう。
 
 `VCS` > `Git` > `Push` をクリックして[Push](https://www.atlassian.com/ja/git/tutorial/remote-repositories#!push)画面を開きます。
 
