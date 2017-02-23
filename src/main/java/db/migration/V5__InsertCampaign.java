@@ -1,12 +1,7 @@
 package db.migration;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.util.stream.Collectors;
 
 import org.flywaydb.core.api.migration.jdbc.JdbcMigration;
 import org.pegdown.Extensions;
@@ -15,13 +10,7 @@ import org.pegdown.PegDownProcessor;
 /**
  * @author kawasima
  */
-public class V6__InsertCampaign implements JdbcMigration {
-    private String read(InputStream in) throws IOException {
-        try (BufferedReader buf = new BufferedReader(new InputStreamReader(in))) {
-            return buf.lines().collect(Collectors.joining("\n"));
-        }
-    }
-
+public class V5__InsertCampaign implements JdbcMigration {
     @Override
     public void migrate(Connection connection) throws Exception {
         String sql = "INSERT INTO campaign(campaign_id, title, statement, goal, create_user_id) " +
