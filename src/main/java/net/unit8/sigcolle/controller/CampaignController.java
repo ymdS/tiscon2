@@ -29,21 +29,6 @@ public class CampaignController {
     @Inject
     private DomaProvider domaProvider;
 
-    private HttpResponse showCampaign(Long campaignId, SignatureForm signature, String message) {
-        CampaignDao campaignDao = domaProvider.getDao(CampaignDao.class);
-        UserCampaign campaign = campaignDao.selectById(campaignId);
-
-        SignatureDao signatureDao = domaProvider.getDao(SignatureDao.class);
-        int signatureCount = signatureDao.countByCampaignId(campaignId);
-
-        return templateEngine.render("campaign",
-                "campaign", campaign,
-                "signatureCount", signatureCount,
-                "signature", signature,
-                "message", message
-        );
-    }
-
     /**
      * キャンペーン詳細画面表示.
      * @param form URLパラメータ
@@ -100,5 +85,22 @@ public class CampaignController {
     public HttpResponse create() {
         // TODO: create campaign
         return builder(redirect("/", SEE_OTHER)).build();
+    }
+
+    private HttpResponse showCampaign(Long campaignId,
+                                      SignatureForm form,
+                                      String message) {
+        CampaignDao campaignDao = domaProvider.getDao(CampaignDao.class);
+        UserCampaign campaign = campaignDao.selectById(campaignId);
+
+        SignatureDao signatureDao = domaProvider.getDao(SignatureDao.class);
+        int signatureCount = signatureDao.countByCampaignId(campaignId);
+
+        return templateEngine.render("campaign",
+                                     "campaign", campaign,
+                                     "signatureCount", signatureCount,
+                                     "signature", form,
+                                     "message", message
+        );
     }
 }

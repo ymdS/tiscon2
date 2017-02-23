@@ -1,13 +1,11 @@
 package net.unit8.sigcolle.form;
 
-import java.util.List;
+import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
-
-import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 /**
  * @author kawasima
@@ -29,18 +27,4 @@ public class SignatureForm extends FormBase {
         return Long.parseLong(campaignId);
     }
 
-    @Override
-    public boolean hasErrors() {
-        return super.hasErrors();
-    }
-
-    @Override
-    public boolean hasErrors(String name) {
-        return super.hasErrors(name);
-    }
-
-    @Override
-    public List<String> getErrors(String name) {
-        return super.getErrors(name);
-    }
 }
