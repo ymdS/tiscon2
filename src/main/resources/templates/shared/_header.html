@@ -3,7 +3,8 @@
 
 <!-- header共通部品 -->
 <header class="ui fixed menu" th:fragment="header">
-    <div class="ui container" th:with="isLogin=((${session} != null) and (${session.principal} != null))">
+    <div class="ui container"
+         th:with="isLogin=((${session} != null) and (${session.principal} != null))">
         <a href="/" class="header item logo">SIG COLLE</a>
 
         <div class="right menu">
@@ -11,8 +12,10 @@
                 <span class="text">キャンペーン</span>
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    <a class="item" href="#">新規作成</a>
-                    <a class="item" href="#">作成キャンペーン一覧</a>
+                    <a class="item" href="/auth/campaign">新規作成</a>
+                    <a class="item" th:href="'/auth/user/campaigns'">
+                        作成したキャンペーン一覧
+                    </a>
                 </div>
             </div>
 

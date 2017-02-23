@@ -1,8 +1,5 @@
 package net.unit8.sigcolle.controller;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-
 import enkan.collection.Multimap;
 import enkan.component.doma2.DomaProvider;
 import enkan.data.HttpResponse;
@@ -13,6 +10,9 @@ import net.unit8.sigcolle.dao.UserDao;
 import net.unit8.sigcolle.form.LoginForm;
 import net.unit8.sigcolle.model.User;
 import org.seasar.doma.jdbc.NoResultException;
+
+import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import static enkan.util.BeanBuilder.builder;
 import static enkan.util.HttpResponseUtils.RedirectStatusCode.SEE_OTHER;
@@ -32,22 +32,24 @@ public class LoginController {
 
     /**
      * ログイン画面の初期表示.
+     *
      * @return HttpResponse
      */
     @Transactional
     public HttpResponse index() {
-        return templateEngine.render("login", "login", new LoginForm());
+        return templateEngine.render("login/login", "login", new LoginForm());
     }
 
     /**
      * ログイン処理.
+     *
      * @param form 画面入力されたform情報
      * @return HttpResponse
      */
     @Transactional
     public HttpResponse login(LoginForm form) {
         if (form.hasErrors()) {
-            return templateEngine.render("login", "login", form);
+            return templateEngine.render("login/login", "login", form);
         }
 
         UserDao userDao = domaProvider.getDao(UserDao.class);
@@ -58,16 +60,16 @@ public class LoginController {
             user = userDao.selectByEmail(form.getEmail());
         } catch (NoResultException e) {
             form.setErrors(Multimap.of("error", INVALID_USERNAME_OR_PASSWORD));
-            return templateEngine.render("login",
-                    "login", form
+            return templateEngine.render("login/login",
+                                         "login", form
             );
         }
 
         // パスワードチェック
         if (!form.getPass().equals(user.getPass())) {
             form.setErrors(Multimap.of("error", INVALID_USERNAME_OR_PASSWORD));
-            return templateEngine.render("login",
-                    "login", form
+            return templateEngine.render("login/login",
+                                         "login", form
             );
         }
         Session session = new Session();
