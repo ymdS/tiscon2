@@ -4,7 +4,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Digits;
 
 /**
  * キャンペーン新規作成Formクラス.
@@ -28,6 +28,7 @@ public class CampaignCreateForm extends FormBase {
     /**
      * 達成人数
      */
-    @NotNull
-    private Long goal;
+    @NotBlank
+    @Digits(integer = 10, fraction = 0)
+    private String goal;
 }
