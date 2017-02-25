@@ -1,5 +1,8 @@
 package net.unit8.sigcolle.controller;
 
+import javax.inject.Inject;
+import javax.transaction.Transactional;
+
 import enkan.collection.Multimap;
 import enkan.component.doma2.DomaProvider;
 import enkan.data.HttpResponse;
@@ -11,10 +14,6 @@ import net.unit8.sigcolle.form.LoginForm;
 import net.unit8.sigcolle.model.User;
 import org.seasar.doma.jdbc.NoResultException;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-
-import static enkan.util.BeanBuilder.builder;
 import static enkan.util.HttpResponseUtils.RedirectStatusCode.SEE_OTHER;
 import static enkan.util.HttpResponseUtils.redirect;
 
@@ -78,9 +77,9 @@ public class LoginController {
                 new LoginUserPrincipal(user.getUserId(), user.getLastName() + " " + user.getFirstName())
         );
 
-        return builder(redirect("/", SEE_OTHER))
-                .set(HttpResponse::setSession, session)
-                .build();
+        HttpResponse response = redirect("/", SEE_OTHER);
+        response.setSession(session);
+        return response;
     }
 
     /**
@@ -91,8 +90,8 @@ public class LoginController {
     @Transactional
     public HttpResponse logout(Session session) {
         session.clear();
-        return builder(redirect("/", SEE_OTHER))
-                .set(HttpResponse::setSession, session)
-                .build();
+        HttpResponse response = redirect("/", SEE_OTHER);
+        response.setSession(session);
+        return response;
     }
 }

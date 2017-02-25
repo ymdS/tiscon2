@@ -1,5 +1,8 @@
 package net.unit8.sigcolle.controller;
 
+import javax.inject.Inject;
+import javax.transaction.Transactional;
+
 import enkan.component.doma2.DomaProvider;
 import enkan.data.Flash;
 import enkan.data.HttpResponse;
@@ -17,10 +20,6 @@ import net.unit8.sigcolle.model.UserCampaign;
 import org.pegdown.Extensions;
 import org.pegdown.PegDownProcessor;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-
-import static enkan.util.BeanBuilder.builder;
 import static enkan.util.HttpResponseUtils.RedirectStatusCode.SEE_OTHER;
 import static enkan.util.HttpResponseUtils.redirect;
 import static enkan.util.ThreadingUtils.some;
@@ -43,9 +42,9 @@ public class CampaignController {
      */
     public HttpResponse index(CampaignForm form, Flash flash) {
         if (form.hasErrors()) {
-            return builder(HttpResponse.of("Invalid"))
-                    .set(HttpResponse::setStatus, 400)
-                    .build();
+            HttpResponse response = HttpResponse.of("Invalid");
+            response.setStatus(400);
+            return response;
         }
 
         return showCampaign(form.getCampaignIdLong(),
@@ -63,17 +62,17 @@ public class CampaignController {
         if (form.hasErrors()) {
             return showCampaign(form.getCampaignIdLong(), form, null);
         }
-        Signature signature = builder(new Signature())
-                .set(Signature::setCampaignId, form.getCampaignIdLong())
-                .set(Signature::setName, form.getName())
-                .set(Signature::setSignatureComment, form.getSignatureComment())
-                .build();
+        Signature signature = new Signature();
+        signature.setCampaignId(form.getCampaignIdLong());
+        signature.setName(form.getName());
+        signature.setSignatureComment(form.getSignatureComment());
+
         SignatureDao signatureDao = domaProvider.getDao(SignatureDao.class);
         signatureDao.insert(signature);
 
-        return builder(redirect("/campaign/" + form.getCampaignId(), SEE_OTHER))
-                .set(HttpResponse::setFlash, new Flash("ご賛同ありがとうございました！"))
-                .build();
+        HttpResponse response = redirect("/campaign/" + form.getCampaignId(), SEE_OTHER);
+        response.setFlash(new Flash<>("ご賛同ありがとうございました！"));
+        return response;
     }
 
     /**
@@ -103,15 +102,16 @@ public class CampaignController {
         PegDownProcessor processor = new PegDownProcessor(Extensions.ALL);
 
         // TODO タイトル, 目標人数を登録する
-        Campaign model = builder(new Campaign())
-            .set(Campaign::setStatement, processor.markdownToHtml(form.getStatement()))
-            .set(Campaign::setCreateUserId, principal.getUserId())
-            .build();
+        Campaign model = new Campaign();
+        model.setStatement(processor.markdownToHtml(form.getStatement()));
+        model.setCreateUserId(principal.getUserId());
+
+        CampaignDao dao = domaProvider.getDao(CampaignDao.class);
         // TODO Databaseに登録する
 
-        // TODO 作成完了した旨のflashメッセージを画面に表示する
-        return builder(redirect("/campaign/" + model.getCampaignId(), SEE_OTHER))
-            .build();
+        HttpResponse response = redirect("/campaign" + model.getCampaignId(), SEE_OTHER);
+        response.setFlash(new Flash<>(""/* TODO: キャンペーンが新規作成できた旨のメッセージを生成する */));
+        return response;
     }
 
     /**
