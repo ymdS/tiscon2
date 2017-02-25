@@ -1,5 +1,8 @@
 package net.unit8.sigcolle.controller;
 
+import javax.inject.Inject;
+import javax.transaction.Transactional;
+
 import enkan.collection.Multimap;
 import enkan.component.doma2.DomaProvider;
 import enkan.data.HttpResponse;
@@ -10,10 +13,6 @@ import net.unit8.sigcolle.dao.UserDao;
 import net.unit8.sigcolle.form.RegisterForm;
 import net.unit8.sigcolle.model.User;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-
-import static enkan.util.BeanBuilder.builder;
 import static enkan.util.HttpResponseUtils.RedirectStatusCode.SEE_OTHER;
 import static enkan.util.HttpResponseUtils.redirect;
 
@@ -61,12 +60,12 @@ public class RegisterController {
             );
         }
 
-        User user = builder(new User())
-                .set(User::setLastName, form.getLastName())
-                .set(User::setFirstName, form.getFirstName())
-                .set(User::setEmail, form.getEmail())
-                .set(User::setPass, form.getPass())
-                .build();
+        User user = new User();
+        user.setLastName(form.getLastName());
+        user.setFirstName(form.getFirstName());
+        user.setEmail(form.getEmail());
+        user.setPass(form.getPass());
+
         userDao.insert(user);
 
         Session session = new Session();
@@ -76,8 +75,8 @@ public class RegisterController {
                 new LoginUserPrincipal(loginUser.getUserId(), loginUser.getLastName() + " " + loginUser.getFirstName())
         );
 
-        return builder(redirect("/", SEE_OTHER))
-                .set(HttpResponse::setSession, session)
-                .build();
+        HttpResponse response = redirect("/", SEE_OTHER);
+        response.setSession(session);
+        return response;
     }
 }

@@ -13,7 +13,7 @@ public class V3__CreateSignature implements JdbcMigration {
     public void migrate(Connection connection) throws Exception {
         try (Statement stmt = connection.createStatement()) {
             stmt.executeUpdate("CREATE TABLE signature (" +
-                    "signature_id IDENTITY PRIMARY KEY," +
+                    "signature_id INTEGER DEFAULT 1 AUTO_INCREMENT PRIMARY KEY," +
                     "name VARCHAR(30) NOT NULL," +
                     "signature_comment CLOB," +
                     "campaign_id INTEGER NOT NULL," +
