@@ -1,5 +1,8 @@
 package net.unit8.sigcolle.controller;
 
+import javax.inject.Inject;
+import javax.transaction.Transactional;
+
 import enkan.component.doma2.DomaProvider;
 import enkan.data.Flash;
 import enkan.data.HttpResponse;
@@ -8,17 +11,15 @@ import kotowari.component.TemplateEngine;
 import net.unit8.sigcolle.auth.LoginUserPrincipal;
 import net.unit8.sigcolle.dao.CampaignDao;
 import net.unit8.sigcolle.dao.SignatureDao;
+import net.unit8.sigcolle.dao.UserDao;
 import net.unit8.sigcolle.form.CampaignCreateForm;
 import net.unit8.sigcolle.form.CampaignForm;
 import net.unit8.sigcolle.form.SignatureForm;
 import net.unit8.sigcolle.model.Campaign;
 import net.unit8.sigcolle.model.Signature;
-import net.unit8.sigcolle.model.UserCampaign;
+import net.unit8.sigcolle.model.User;
 import org.pegdown.Extensions;
 import org.pegdown.PegDownProcessor;
-
-import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 import static enkan.util.BeanBuilder.builder;
 import static enkan.util.HttpResponseUtils.RedirectStatusCode.SEE_OTHER;
@@ -129,16 +130,19 @@ public class CampaignController {
                                       SignatureForm form,
                                       String message) {
         CampaignDao campaignDao = domaProvider.getDao(CampaignDao.class);
-        UserCampaign campaign = campaignDao.selectById(campaignId);
+        Campaign campaign = campaignDao.selectById(campaignId);
+        UserDao userDao = domaProvider.getDao(UserDao.class);
+        User user = userDao.selectByUserId(campaign.getCreateUserId());
 
         SignatureDao signatureDao = domaProvider.getDao(SignatureDao.class);
         int signatureCount = signatureDao.countByCampaignId(campaignId);
 
         return templateEngine.render("campaign/index",
-                                     "campaign", campaign,
-                                     "signatureCount", signatureCount,
-                                     "signature", form,
-                                     "message", message
+                "campaign", campaign,
+                "user", user,
+                "signatureCount", signatureCount,
+                "signature", form,
+                "message", message
         );
     }
 }
