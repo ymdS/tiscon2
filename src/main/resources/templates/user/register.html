@@ -18,26 +18,22 @@
                     <div class="center column">
                         <div class="ui segment">
                             <h1 class="ui center aligned header">新規登録</h1>
-                            <form class="ui form" method="post" action="/register"
-                                  th:action="@{~/register}"
-                                  th:classappend="${user.hasErrors()} ? 'error'">
+
+                            <form class="ui form" method="post" action="/register" th:classappend="${user.hasErrors()} ? 'error'">
                                 <div class="field" th:classappend="${user.hasErrors('lastName')} ? 'error'">
-                                    <input type="text" name="lastName" placeholder="姓"
-                                           th:value="${user.lastName != null} ? ${user.lastName}" />
+                                    <input type="text" name="lastName" placeholder="姓" th:value="${user.lastName != null} ? ${user.lastName}" />
                                     <ul class="ui pointing red basic label" th:if="${user.hasErrors('lastName')}">
                                         <li th:each="message : ${user.getErrors('lastName')}" th:text="${message}"></li>
                                     </ul>
                                 </div>
                                 <div class="field"  th:classappend="${user.hasErrors('firstName')} ? 'error'">
-                                    <input type="text" name="firstName" placeholder="名"
-                                           th:value="(${user.firstName}!=null)?${user.firstName}"/>
+                                    <input type="text" name="firstName" placeholder="名" th:value="(${user.firstName}!=null)?${user.firstName}"/>
                                     <ul class="ui pointing red basic label" th:if="${user.hasErrors('firstName')}">
                                         <li th:each="message : ${user.getErrors('firstName')}" th:text="${message}"></li>
                                     </ul>
                                 </div>
                                 <div class="field" th:classappend="${user.hasErrors('email')} ? 'error'">
-                                    <input type="email" name="email" placeholder="メールアドレス"
-                                           th:value="(${user.email}!=null)?${user.email}"/>
+                                    <input type="email" name="email" placeholder="メールアドレス" th:value="(${user.email}!=null)?${user.email}"/>
                                     <ul class="ui pointing red basic label" th:if="${user.hasErrors('email')}">
                                         <li th:each="message : ${user.getErrors('email')}" th:text="${message}"></li>
                                     </ul>

@@ -18,12 +18,11 @@
                     <div class="center column">
                         <h1 class="ui center aligned header">ログイン</h1>
                         <div class="ui segment">
-                            <form class="ui form" method="post" action="/login" th:action="@{~/login}"
-                                  th:classappend="${login.hasErrors()} ? 'error'">
+                            <form class="ui form" method="post" action="/login" th:classappend="${login.hasErrors()} ? 'error'">
                                 <div class="ui error message" th:if="${login.hasErrors('error')}" th:text="${login.getErrors('error').get(0)}"></div>
+
                                 <div class="field" th:classappend="${login.hasErrors('email') or login.hasErrors('error')} ? 'error'">
-                                    <input type="email" name="email" placeholder="メールアドレス"
-                                           th:value="${login.email != null} ? ${login.email}" />
+                                    <input type="email" name="email" placeholder="メールアドレス" th:value="${login.email != null} ? ${login.email}"/>
                                     <ul class="ui pointing red basic label" th:if="${login.hasErrors('email')}">
                                         <li th:each="message : ${login.getErrors('email')}" th:text="${message}"></li>
                                     </ul>
