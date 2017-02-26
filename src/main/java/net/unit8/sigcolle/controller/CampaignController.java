@@ -37,7 +37,8 @@ public class CampaignController {
 
     /**
      * キャンペーン詳細画面表示.
-     * @param form URLパラメータ
+     *
+     * @param form  URLパラメータ
      * @param flash flash scope session
      * @return HttpResponse
      */
@@ -55,6 +56,7 @@ public class CampaignController {
 
     /**
      * 署名の追加処理.
+     *
      * @param form 画面入力された署名情報.
      * @return HttpResponse
      */
@@ -93,6 +95,7 @@ public class CampaignController {
      * @param form    入力フォーム
      * @param session ログインしているユーザsession
      */
+    @Transactional
     public HttpResponse create(CampaignCreateForm form,
                                Session session) {
         if (form.hasErrors()) {
@@ -107,11 +110,12 @@ public class CampaignController {
         model.setStatement(processor.markdownToHtml(form.getStatement()));
         model.setCreateUserId(principal.getUserId());
 
-        CampaignDao dao = domaProvider.getDao(CampaignDao.class);
+        CampaignDao campaignDao = domaProvider.getDao(CampaignDao.class);
         // TODO Databaseに登録する
 
-        HttpResponse response = redirect("/campaign" + model.getCampaignId(), SEE_OTHER);
+        HttpResponse response = redirect("/campaign/" + model.getCampaignId(), SEE_OTHER);
         response.setFlash(new Flash<>(""/* TODO: キャンペーンが新規作成できた旨のメッセージを生成する */));
+
         return response;
     }
 
