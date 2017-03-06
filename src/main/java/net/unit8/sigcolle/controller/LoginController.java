@@ -27,7 +27,7 @@ public class LoginController {
     @Inject
     private DomaProvider domaProvider;
 
-    private static final String INVALID_USERNAME_OR_PASSWORD = "ユーザー名とパスワードが間違っています。もう一度やり直してください。";
+    private static final String INVALID_USERNAME_OR_PASSWORD = "メールアドレスとパスワードが間違っています。もう一度やり直してください。";
 
     /**
      * ログイン画面の初期表示.
