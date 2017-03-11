@@ -1,0 +1,21 @@
+◆push前の作法
+----初回のみ行う-----
+git checkout -b "BN"//ブランチを切る
+----毎回行う---------
+git branch  //現在の作業ブランチを確認
+git add --all   //commitするテーブルに作業内容を載せる
+git commit -m "作業を残すメッセージ"  //これでコミット！セーブデータ保存
+git push origin branchname" //これで、ブランチをpushすることができました。
+
+◆リーダーがやること
+(masterブランチで行う)
+git merge "統合したいbranchname"
+
+◆参考コマンド
+ブランチの変更：git checkout "branchname"
+ブランチを切る：git checkout -b "branchname"
+ブランチ一覧：git branch
+リモートブランチの確認：git branch -r
+ローカルリモート両方のブランチ確認：git branch -a
+現在の作業ブランチに指定ブランチをマージする：git merge "branchname"
+リモート・リポジトリにブランチをプッシュする：git push origin "branchname"
