@@ -18,7 +18,7 @@ public class V4__InsertUser implements JdbcMigration {
             stmt.setLong(1, 0L);
             stmt.setString(2, "kawasima");
             stmt.setString(3, "");
-            stmt.setString(4, "sample@tis.co.jp");
+            stmt.setString(4, "a@a");
             stmt.setString(5, "P@ss1");
             stmt.executeUpdate();
             connection.commit();

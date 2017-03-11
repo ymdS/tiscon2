@@ -38,10 +38,12 @@ public class CampaignController {
     /**
      * キャンペーン詳細画面表示.
      *
+     *
      * @param form  URLパラメータ
      * @param flash flash scope session
      * @return HttpResponse
      */
+
     public HttpResponse index(CampaignForm form, Flash flash) {
         if (form.hasErrors()) {
             HttpResponse response = HttpResponse.of("Invalid");
@@ -107,11 +109,23 @@ public class CampaignController {
 
         // TODO タイトル, 目標人数を登録する
         Campaign model = new Campaign();
-        model.setStatement(processor.markdownToHtml(form.getStatement()));
-        model.setCreateUserId(principal.getUserId());
+        model.setStatement(processor.markdownToHtml(form.getStatement()));//Statementを入力している
+        model.setCreateUserId(principal.getUserId());//作成userをgetしてくる
+        //ここから改変部分
+
+        model.setTitle(form.getTitle());//これはOK!タイトル
+        //campaign.setStatement(form.getStatement());
+        model.setGoal(Long.parseLong(form.getGoal()));//これはOK!!ゴールの数字
+
+        //create_user_id
+        //ここまで改変部分
 
         CampaignDao campaignDao = domaProvider.getDao(CampaignDao.class);
         // TODO Databaseに登録する
+
+        //ここから改変部分
+        campaignDao.insert(model);
+        //ここまで改変部分
 
         HttpResponse response = redirect("/campaign/" + model.getCampaignId(), SEE_OTHER);
         response.setFlash(new Flash<>(""/* TODO: キャンペーンが新規作成できた旨のメッセージを生成する */));
