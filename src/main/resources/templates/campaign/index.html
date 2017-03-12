@@ -25,6 +25,7 @@ xmlns:th="http://www.thymeleaf.org">
                 <div class="ui grid">
                     <div class="ten wide column">
                         <div class="statement" th:utext="${campaign.statement}" ></div>
+
                     </div>
                     <div class="six wide column">
                         <h2>今すぐ賛同</h2>
@@ -32,11 +33,15 @@ xmlns:th="http://www.thymeleaf.org">
                             <span th:text="${signatureCount}">345</span>人の賛同
                         </p>
                         <div class="ui red progress">
+
                             <div class="bar" th:style="${'width:' + (signatureCount * 100 / campaign.goal) + '%'}"></div>
                         </div>
-                        <p>
+                        <p th:if="${campaign.goal - signatureCount > 0}">
                             <span th:text="${campaign.goal}">1000</span>人まで残り
                             <span th:text="${campaign.goal - signatureCount}">1</span>人の賛同者が必要です！
+                        </p>
+                        <p th:if="${campaign.goal - signatureCount <= 0}">
+                            達成おめでとう!!
                         </p>
 
                         <form class="ui form" method="post" th:action="@{~/campaign/{id}(id=${campaign.campaignId})}" th:classappend="${signature.hasErrors()} ? 'error'">
@@ -53,7 +58,17 @@ xmlns:th="http://www.thymeleaf.org">
                                     <li th:each="message : ${signature.getErrors('signatureComment')}" th:text="${message}"></li>
                                 </ul>
                             </div>
+
+                            <!-- 変更箇所(ボタンを参道人数になったら表示させない)　-->
+                            <p th:if="${(signatureCount * 100 / campaign.goal) < 100}">
                             <button class="ui fluid red button">賛同する</button>
+                            </p>
+
+                            <p th:if="${(signatureCount * 100 / campaign.goal) >= 100}">
+                                達成済みです！ご協力ありがとうございました。
+                            </p>
+
+                            <!-- ここまで　-->
                         </form>
                     </div>
                 </div>

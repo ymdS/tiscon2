@@ -77,6 +77,7 @@ public class CampaignController {
 
         HttpResponse response = redirect("/campaign/" + form.getCampaignId(), SEE_OTHER);
         response.setFlash(new Flash<>("ご賛同ありがとうございました！"));
+        //response.setFlash(new Flash<>("ご協力ありがとうございました。"));
         return response;
     }
 
@@ -154,6 +155,7 @@ public class CampaignController {
 
         SignatureDao signatureDao = domaProvider.getDao(SignatureDao.class);
         int signatureCount = signatureDao.countByCampaignId(campaignId);
+
 
         return templateEngine.render("campaign/index",
                 "campaign", campaign,
