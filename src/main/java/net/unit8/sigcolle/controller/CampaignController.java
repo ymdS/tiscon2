@@ -2,6 +2,7 @@ package net.unit8.sigcolle.controller;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.List;
 
 import enkan.component.doma2.DomaProvider;
 import enkan.data.Flash;
@@ -141,8 +142,18 @@ public class CampaignController {
      *
      * @param session ログインしているユーザsession
      */
+
     public HttpResponse listCampaigns(Session session) {
-        throw new UnsupportedOperationException("実装してください !!");
+        // ここから改変
+        LoginUserPrincipal principal = (LoginUserPrincipal) session.get("principal");
+        CampaignDao campaignDao = domaProvider.getDao(CampaignDao.class);
+        List<Campaign> campaign = campaignDao.selectByUserId(new Long(principal.getUserId()));
+        //return templateEngine.render("index", "campaigns", campaignDao.selectByUserId(Long.parseLong("1")));
+        return templateEngine.render("index",
+                "campaigns", campaign
+                );
+        //ここまで変更
+        //throw new UnsupportedOperationException("実装してください !!");
     }
 
     private HttpResponse showCampaign(Long campaignId,
@@ -155,14 +166,20 @@ public class CampaignController {
 
         SignatureDao signatureDao = domaProvider.getDao(SignatureDao.class);
         int signatureCount = signatureDao.countByCampaignId(campaignId);
-
-
+/*
+<<<<<<< HEAD
+=======
+        //ここから変更
+        List<Signature> signature = signatureDao.selectAllByCampaignId(campaignId);
+>>>>>>> yamada-1
+*/
         return templateEngine.render("campaign/index",
                 "campaign", campaign,
                 "user", user,
                 "signatureCount", signatureCount,
                 "signature", form,
-                "message", message
+                "message", message//,
+               // "signature",signature//ここのみ変更
         );
     }
 }
