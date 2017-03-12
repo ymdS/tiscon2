@@ -21,4 +21,10 @@ public interface CampaignDao {
 
     @Insert
     int insert(Campaign campaign);
+
+    //これ以降変更
+    @Select
+    List<Campaign> selectByUserId(Long createUserId);
+
+
 }
