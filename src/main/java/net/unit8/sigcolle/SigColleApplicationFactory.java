@@ -77,6 +77,11 @@ public class SigColleApplicationFactory implements ApplicationFactory {
         app.use(and(path("^/auth/.*"), authenticated().negate()),
                 (Endpoint<HttpRequest, HttpResponse>) req -> redirect("/login", TEMPORARY_REDIRECT));
 
+
+        app.use(and(path("^/campaign/.*"), authenticated().negate()),
+                (Endpoint<HttpRequest, HttpResponse>) req -> redirect("/login", TEMPORARY_REDIRECT));
+
+
         app.use(new DomaTransactionMiddleware<>());
         app.use(new FormMiddleware());
         app.use(builder(new SerDesMiddleware())
